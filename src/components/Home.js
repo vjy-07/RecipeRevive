@@ -16,7 +16,7 @@ const Home = () => {
             </div>
           </div>
           <div className="header-text">
-            <h1>EatOverse</h1>
+            <h1>RecipeRevive</h1>
             <p>Discover, Create, and Share Your Culinary Adventures</p>
           </div>
         </div>

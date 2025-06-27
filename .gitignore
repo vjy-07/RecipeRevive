@@ -130,5 +130,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 backend/.env
-backend/.env
-backend/.env
+.vscode/

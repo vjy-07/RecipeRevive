@@ -8,7 +8,7 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:3000", // local dev
-  "https://reicperevive-frontend.onrender.com/", // replace with your actual frontend URL
+  "https://reicperevive-frontend.onrender.com", // replace with your actual frontend URL
 ];
 
 // Connect to MongoDB

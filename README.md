@@ -1,70 +1,127 @@
-# Getting Started with Create React App
+# 🍽️ RecipeRevive
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**RecipeRevive** is an all-in-one recipe discovery and kitchen management web app that allows users to search for delicious recipes, view nutritional information for custom ingredients, and set expiration reminders for their food items. Designed for simplicity, health-conscious living, and reducing food waste.
 
-## Available Scripts
+🔗 **Live Site**: [https://reicperevive-frontend.onrender.com](https://reicperevive-frontend.onrender.com/)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🔍 Recipe Search
+- Search a wide variety of recipes using keywords.
+- Click on any recipe card to view:
+  - Ingredients
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 🧮 Nutritional Analysis
+- Input **custom ingredients** with quantities.
+- View real-time nutritional facts like:
+  - Calories
+  - Proteins
+  - Carbohydrates
+  - Fats
 
-### `npm test`
+### ⏰ Expiration Reminder
+- Add items from your kitchen.
+- Set expiration dates with time-based reminders.
+- Get notified when an item is near expiry.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🔐 Authentication
+- Secure **Sign Up** and **Login** functionality.
+- Anyone can access the home page.
+- Only logged-in users can:
+  - Search recipes
+  - Analyze nutrition
+  - Set reminders
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🧱 Tech Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| Frontend     | Backend             | Database        | Hosting        |
+|--------------|---------------------|------------------|----------------|
+| React.js     | Node.js + Express.js| MongoDB Atlas    | Render         |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 📁 Folder Structure
+```
+RecipeRevive/
+├── backend/ # Backend code (Express.js + MongoDB)
+│ ├── config/ # MongoDB connection setup
+│ ├── controllers/ # Controllers for auth and features
+│ ├── models/ # Mongoose models (User, Reminder, etc.)
+│ ├── routes/ # API route files
+│ ├── app.js # Main Express server
+│ ├── package.json # Backend dependencies
+│ └── .env # Backend environment variables
+│
+├── public/ # Public files (React)
+│ └── index.html
+│
+├── src/ # Frontend React code
+│ ├── components/ # Reusable UI components
+│ ├── styles/ # SCSS styling
+│ ├── App.js # Main app component
+│ └── index.js # React DOM rendering
+│
+├── .gitignore
+├── package.json # Frontend dependencies
+├── README.md
+└── .env # Frontend environment variables
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🛠️ Getting Started (Local Setup)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 🔧 Prerequisites
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Node.js installed
+- MongoDB Atlas database setup
+- Edamam API credentials
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🖥️ Backend Setup
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+# Step 1: Navigate to backend folder
+cd backend
 
-### Code Splitting
+# Step 2: Create .env file
+touch .env
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# next Add these to .env file
+MONGO_URI=your_mongodb_atlas_uri
+PORT=5001
+JWT_SECRET=
 
-### Analyzing the Bundle Size
+# Step 3: Install backend dependencies
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Step 4: Start the backend server
+npm start
 
-### Making a Progressive Web App
+```
+### 🌐 Frontend Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+# Step 1: Make sure you're in the root of the project
+cd recipeapp  # or your project folder name
 
-### Advanced Configuration
+# Step 2: Create .env file
+touch .env
+# next Add these to .env file
+REACT_APP_APP_ID=
+REACT_APP_APP_KEY=
+REACT_APP_NUTRITION_API_ID=
+REACT_APP_NUTRITION_API_KEY=
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# Step 3: Install frontend dependencies
+npm install
 
-### Deployment
+# Step 4: Start the React app
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```

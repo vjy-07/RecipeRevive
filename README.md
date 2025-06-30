@@ -2,7 +2,7 @@
 
 **RecipeRevive** is an all-in-one recipe discovery and kitchen management web app that allows users to search for delicious recipes, view nutritional information for custom ingredients, and set expiration reminders for their food items. Designed for simplicity, health-conscious living, and reducing food waste.
 
-🔗 **Live Site**: [https://reicperevive-frontend.onrender.com](https://reicperevive-frontend.onrender.com/)
+🔗 <strong>Live Site</strong>: <a href="https://reicperevive-frontend.onrender.com/" target="_blank">https://reicperevive-frontend.onrender.com/</a>
 
 ---
 

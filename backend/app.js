@@ -20,8 +20,15 @@ app.use(
   cors({
     origin: allowedOrigins,
     credentials: true,
-  })
+  }),
 );
+// Health Route
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    message: "Server is running",
+  });
+});
 
 // Define Routes
 app.use("/api/auth", require("./routes/authRoutes"));

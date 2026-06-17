@@ -55,16 +55,42 @@
     }
   }
 
-  .auth-message, .error-message {
-    color: #333;
-    margin: 15px 0;
-    text-align: center;
-    font-weight: bold;
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif; // Consistent font styling
-  }
-
-  .error-message {
-    color: #ff4d4d; // Red color for error messages
-  }
+    .auth-message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+      font-family: 'Roboto', sans-serif;
+      background-color: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeeba;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+  
+    .error-message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+  
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+  
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 }

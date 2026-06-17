@@ -6,7 +6,11 @@ function Exp() {
   const [expirationDate, setExpirationDate] = useState('');
   const [expirationTime, setExpirationTime] = useState('');
   const [reminderDays, setReminderDays] = useState(3);
-  const [reminders, setReminders] = useState([]);
+  const [reminders, setReminders] = useState(() => {
+    const savedReminders = localStorage.getItem("reminders");
+    return savedReminders ? JSON.parse(savedReminders) : [];
+  });
+
 
   // Function to show notification
   const showNotification = useCallback((foodItem, expirationDate, expirationTime, type) => {
@@ -45,22 +49,42 @@ function Exp() {
 
       // Notify when expiration date is reached
       if (diffSeconds <= 0 && !reminder.notified) {
-        showNotification(reminder.foodItem, reminder.expirationDate, reminder.expirationTime, 'has reached');
-        handleDeleteReminder(reminder.id); // Optionally remove the reminder after notifying
-        reminder.notified = true; // Mark this reminder as notified
+        showNotification(
+          reminder.foodItem,
+          reminder.expirationDate,
+          reminder.expirationTime,
+          "has reached",
+        );
+
+        setReminders((prevReminders) =>
+          prevReminders.filter((item) => item.id !== reminder.id),
+        );
       }
       // Notify when approaching expiration
-      else if (diffSeconds <= reminder.reminderDays * 24 * 60 * 60 && diffSeconds > 0 && !reminder.approachingNotified) {
-        showNotification(reminder.foodItem, reminder.expirationDate, reminder.expirationTime, 'approaching');
+      else if (
+        diffSeconds <= reminder.reminderDays * 24 * 60 * 60 &&
+        diffSeconds > 0 &&
+        !reminder.approachingNotified
+      ) {
+        showNotification(
+          reminder.foodItem,
+          reminder.expirationDate,
+          reminder.expirationTime,
+          "approaching",
+        );
         reminder.approachingNotified = true; // Mark this reminder as approaching notified
       }
     });
-  }, [reminders, showNotification, handleDeleteReminder]);
+  }, [reminders, showNotification]);
 
   useEffect(() => {
     const interval = setInterval(checkExpirationDates, 1000); // Check every second
     return () => clearInterval(interval); // Clear interval on component unmount
   }, [checkExpirationDates]);
+
+  useEffect(() => {
+    localStorage.setItem("reminders", JSON.stringify(reminders));
+  }, [reminders]);
 
   const handleAddReminder = () => {
     if (foodItem && expirationDate && expirationTime) {

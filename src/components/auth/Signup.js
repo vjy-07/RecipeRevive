@@ -12,13 +12,53 @@ const Signup = () => {
 
   const handleSignup = async () => {
     // Validation checks
-    if (!name) {
+    setMessage("");
+
+    if (!name.trim()) {
       setMessage("Name is required");
       return;
     }
 
-    if (password.length < 6) {
-      setMessage("Password should be a minimum of 6 characters");
+    if (name.trim().length < 3) {
+      setMessage("Name must be at least 3 characters");
+      return;
+    }
+
+    const nameRegex = /^[A-Za-z ]+$/;
+
+    if (!nameRegex.test(name)) {
+      setMessage("Name can contain only letters and spaces");
+      return;
+    }
+
+    if (!email.trim()) {
+      setMessage("Email is required");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      setMessage("Please enter a valid email address");
+      return;
+    }
+
+    if (!password) {
+      setMessage("Password is required");
+      return;
+    }
+
+    if (password.length < 8) {
+      setMessage("Password must be at least 8 characters");
+      return;
+    }
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/;
+
+    if (!passwordRegex.test(password)) {
+      setMessage(
+        "Password must contain uppercase, lowercase, number and special character",
+      );
       return;
     }
 
@@ -55,19 +95,29 @@ const Signup = () => {
         <input
           type="text"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => {
+            setName(e.target.value);
+            setMessage("");
+           }
+          }
           placeholder="Name"
         />
         <input
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value)
+            setMessage("");
+          }}
           placeholder="Email"
         />
         <input
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value)
+            setMessage("");
+          }}
           placeholder="Password"
         />
         <button onClick={handleSignup}>Signup</button>

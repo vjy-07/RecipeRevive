@@ -1,62 +1,145 @@
 .Exp {
-  text-align: center;
-  margin-top: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 
   h1 {
+    text-align: center;
     font-size: 32px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    color: #333;
   }
 
   .add-reminder {
     display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 
-    input[type="text"],
+     input[type="text"],
     input[type="date"],
     input[type="time"],
     select {
-      margin-right: 10px;
-      padding: 5px;
+      min-height: 30px;
+      padding: 10px 12px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 8px;
+      font-size: 15px;
+      min-width: 180px;
     }
 
     button {
-      padding: 5px 10px;
-      background-color: #6FCB9F;  /* Updated color */
-      color: #fff;
+      min-height: 30px;
+      padding: 10px 20px;
+      background-color: #6FCB9F;
+      color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s ease;
+
+      &:hover {
+        opacity: 0.9;
+      }
     }
+
+    
   }
 
   .reminders {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 15px;
 
-    .reminder {
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 10px;
-      margin-bottom: 10px;
-      width: 550px;
+   .reminder {
+      width: 100%;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 
-      button {
-        background-color: #6FCB9F;  /* Default color for all buttons */
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
+      span {
+        color: #333;
+        font-size: 15px;
       }
 
-      .delete-button {
-        background-color: #dc3545;  /* Red color for delete button */
+      button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+    }
+
+    
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .Exp {
+    padding: 15px;
+
+     h1 {
+      font-size: 26px;
+    }
+
+    .add-reminder {
+
+      input,
+      select,
+      button {
+        flex: 1 1 45%;
+      }
+    }
+
+    .reminder {
+      flex-direction: column;
+      align-items: flex-start;
+
+      button {
+        width: 100%;
+      }
+    }
+
+    
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .Exp {
+    padding: 10px;
+
+     h1 {
+      font-size: 22px;
+    }
+
+    .add-reminder {
+      flex-direction: column;
+
+      input,
+      select,
+      button {
+        width: 100%;
+      }
+    }
+
+    .reminders {
+      .reminder {
+        span {
+          font-size: 14px;
+        }
       }
     }
   }

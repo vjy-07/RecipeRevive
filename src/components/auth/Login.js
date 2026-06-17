@@ -12,14 +12,42 @@ const Login = ({ onLogin }) => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    setMessage("");
+
+    if (!email.trim()) {
+      setMessage("Email is required");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      setMessage("Please enter a valid email address");
+      return;
+    }
+
+    if (!password) {
+      setMessage("Password is required");
+      return;
+    }
+
     try {
-      const response = await axios.post("/api/auth/login", { email, password });
+      const response = await axios.post("/api/auth/login", {
+        email,
+        password,
+      });
+
       const { token } = response.data;
       onLogin(token);
-      navigate("/"); // Redirect to the home page after successful login
+      navigate("/");
     } catch (error) {
       console.error("Login failed", error);
-      setMessage("Login failed. Please try again.");
+
+      if (error.response?.data?.msg) {
+        setMessage(error.response.data.msg);
+      } else {
+        setMessage("Invalid email or password");
+      }
     }
   };
 
@@ -30,13 +58,19 @@ const Login = ({ onLogin }) => {
         <input
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setMessage("");
+          }}
           placeholder="Email"
         />
         <input
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setMessage("");
+          }}
           placeholder="Password"
         />
         <button onClick={handleLogin}>Login</button>

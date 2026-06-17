@@ -19,24 +19,38 @@ function NutritionInfo() {
 
       // Create a new chart and store the instance in the ref
       chartRef.current = new Chart(ctx, {
-        type: 'pie',
+        type: "pie",
         data: {
-          labels: ['Calories (kcal)', 'Fat (g)', 'Carbs (g)', 'Fiber (g)', 'Protein (g)', 'Calcium (mg)'],
-          datasets: [{
-            label: 'Nutrient Information',
-            data: [
-              data.calories,
-              data.totalNutrients.FAT ? data.totalNutrients.FAT.quantity.toFixed(2) : 0,
-              data.totalNutrients.CHOCDF ? data.totalNutrients.CHOCDF.quantity.toFixed(2) : 0,
-              data.totalNutrients.FIBTG ? data.totalNutrients.FIBTG.quantity.toFixed(2) : 0,
-              data.totalNutrients.PROCNT ? data.totalNutrients.PROCNT.quantity.toFixed(2) : 0,
-              data.totalNutrients.CA ? data.totalNutrients.CA.quantity.toFixed(2) : 0,
-            ],
-            backgroundColor: [
-              '#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff', '#ffcc99'
-            ],
-            borderWidth: 1
-          }]
+          labels: [
+            "Calories (kcal)",
+            "Fat (g)",
+            "Carbs (g)",
+            "Fiber (g)",
+            "Protein (g)",
+            "Calcium (mg)",
+          ],
+          datasets: [
+            {
+              label: "Nutrient Information",
+              data: [
+                data?.calories || 0,
+                data?.totalNutrients?.FAT?.quantity?.toFixed(2) || 0,
+                data?.totalNutrients?.CHOCDF?.quantity?.toFixed(2) || 0,
+                data?.totalNutrients?.FIBTG?.quantity?.toFixed(2) || 0,
+                data?.totalNutrients?.PROCNT?.quantity?.toFixed(2) || 0,
+                data?.totalNutrients?.CA?.quantity?.toFixed(2) || 0,
+              ],
+              backgroundColor: [
+                "#ff6384",
+                "#36a2eb",
+                "#ffce56",
+                "#4bc0c0",
+                "#9966ff",
+                "#ffcc99",
+              ],
+              borderWidth: 1,
+            },
+          ],
         },
         options: {
           responsive: true,
@@ -44,17 +58,17 @@ function NutritionInfo() {
           plugins: {
             title: {
               display: true,
-              text: 'Nutrient Information',
+              text: "Nutrient Information",
               font: {
-                size: 18
-              }
-            }
-          }
-        }
+                size: 18,
+              },
+            },
+          },
+        },
       });
     };
 
-    if (nutritionData) {
+    if (nutritionData && nutritionData.totalNutrients) {
       createPieChart(nutritionData);
     }
   }, [nutritionData]);
@@ -75,6 +89,13 @@ function NutritionInfo() {
         body: JSON.stringify({ title, ingr })
       });
       const data = await response.json();
+      console.log(data);
+
+      if (!data.totalNutrients) {
+        alert("Unable to analyze recipe. Please enter valid ingredients.");
+        return;
+      }
+
       setNutritionData(data);
     } catch (error) {
       console.error('Error fetching nutrition data:', error);

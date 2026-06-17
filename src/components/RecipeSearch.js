@@ -15,6 +15,7 @@ function RecipeSearch(props) {
     setLoading(true); // Set loading to true when starting the search
     try {
       const response = await fetchData(searchQuery);
+      // console.log(response);
       setData(response);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -37,15 +38,16 @@ function RecipeSearch(props) {
   };
 
   return (
-    <div className='container'>
-      <div className='heading-line'>
+    <div className="container">
+      <div className="heading-line">
         <strong>Search Recipes</strong>
-        <div className='input-wrapper'>
+        <div className="input-wrapper">
           <input
             onChange={(e) => setSearchedTerm(e.target.value)}
             value={searchedTerm}
             type="text"
-            placeholder='Search your recipe' />
+            placeholder="Search your recipe"
+          />
           <button onClick={() => searchRecipe(searchedTerm)}>
             <BsSearch />
           </button>
@@ -60,19 +62,26 @@ function RecipeSearch(props) {
       )}
 
       {!loading && (
-        <div className='flexbox'>
-          {data && data.hits.map((item, index) => (
-            <div key={index} className='flexItem' onClick={() => handleRecipeClick(item.recipe)}>
-              <div className='img-wrapper'>
-                <img src={item.recipe.image} alt={item.recipe.label} />
+        <div className="flexbox">
+          {data &&
+            data.hits.map((item, index) => (
+              <div
+                key={index}
+                className="flexItem"
+                onClick={() => handleRecipeClick(item.recipe)}
+              >
+                <div className="img-wrapper">
+                  <img src={item.recipe.image} alt={item.recipe.label} />
+                </div>
+                <p>{item.recipe.label}</p>
               </div>
-              <p>{item.recipe.label}</p>
-            </div>
-          ))}
+            ))}
         </div>
       )}
 
-      {showModal && selectedRecipe && <Modal recipe={selectedRecipe} onClose={closeModal} />}
+      {showModal && selectedRecipe && (
+        <Modal recipe={selectedRecipe} onClose={closeModal} />
+      )}
     </div>
   );
 }

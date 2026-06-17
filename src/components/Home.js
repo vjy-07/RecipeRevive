@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../styles/Home.scss';
 import { ImSpoonKnife } from 'react-icons/im';
 import Tabs from './Tabs'; // Import Tabs here
 
 const Home = () => {
-  const [loader, setLoader] = useState(true);
 
   return (
     <div>
@@ -23,12 +22,7 @@ const Home = () => {
       </div>
 
       <div className="main">
-        <Tabs setLoader={setLoader} />
-        {loader && (
-          <div className='loader'>
-            <div className='spinner'></div>
-          </div>
-        )}
+        <Tabs />
       </div>
     </div>
   );
